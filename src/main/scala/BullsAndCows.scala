@@ -83,16 +83,4 @@ class BullsAndCows(
     guessesArray.toArray
   }
 
-//  def clampGuess(guess:Int, min:Int, max:Int, verbose:Boolean = true): Int = {
-//    if (guess > max) {
-//      if (verbose) println(s"$guess was too much, you will have to settle for $max")
-//      max
-//    } else if (guess < min) {
-//      if (verbose) println(s"$guess was too little, you will have to settle for $min")
-//      min
-//    } else {
-//      guess
-//    }
-//  }
-
 }
