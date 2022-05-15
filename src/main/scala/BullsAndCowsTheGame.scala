@@ -1,16 +1,17 @@
-import java.io.FileNotFoundException
-import java.nio.file.{Files, Paths}
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
-import java.time.{ZoneOffset, ZonedDateTime}
-import java.util.Calendar
-import scala.collection.mutable.ArrayBuffer
+//import java.io.FileNotFoundException
+//import java.nio.file.{Files, Paths}
+//import java.text.SimpleDateFormat
+//import java.time.format.DateTimeFormatter
+//import java.time.{ZoneOffset, ZonedDateTime}
+//import java.util.Calendar
+//import scala.collection.mutable.ArrayBuffer
 import scala.io.StdIn.readLine
+//import java.sql.DriverManager
 
 object BullsAndCowsTheGame extends App {
 
   //val saveDst = "src/resources/bulls_and_cows/scores.csv"
-  //val db = new BullsAndCowsDB //TODO class BullsAndCows
+  val db = new BullsAndCowsDB("src/resources/BullsAndCows/BullsAndCows.db")
   val gameEndCondition = "4B0C"
 //  val minGuess = 123 //all digits must be different
 //  val maxGuess = 9876
@@ -26,7 +27,7 @@ object BullsAndCowsTheGame extends App {
     var myGuess = "0123"
     //we keep going until we get an input which is 4 unique digits
     while (needs4DigitNumber) {
-      val guessInput = readLine(s"What's your 4-digit guess, ${BullsAndCowsGame.currentPlayer}").trim
+      val guessInput = readLine(s"What's your 4-digit guess, ${BullsAndCowsGame.currentPlayer}? ").trim
       if (guessInput.length != 4) {
         println("The number must have 4 digits. Try again.")
       } else if (!guessInput.forall(Character.isDigit)) {
@@ -47,7 +48,12 @@ object BullsAndCowsTheGame extends App {
     BullsAndCowsGame.nextPlayer()
     BullsAndCowsGame.showStatus()
   }
-  BullsAndCowsGame.showStatus()
+
   BullsAndCowsGame.printGuesses()
+
+  db.migrate()
+  db.insertResult(BullsAndCowsGame.getWinner, BullsAndCowsGame.getLoser)
+  db.insertFullScore(BullsAndCowsGame.getGuesses)
+  db.conn.close()
 
 }

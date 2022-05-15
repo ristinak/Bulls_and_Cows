@@ -10,8 +10,6 @@ class BullsAndCows(
                   val playerA:String,
                   val playerB:String,
                   val gameEndCondition:String = "4B0C",
-//                  val minGuess:String = "0123",
-//                  val maxGuess:String = "9876",
                   var isPlayerATurn:Boolean = true) {
   println("Created a new game object of CowsAndBulls")
   var currentState = "0B0C" //0 bulls and 0 cows
@@ -20,7 +18,6 @@ class BullsAndCows(
 
   val requiredDigits = 4
   val digits:List[Char] = List('0','1','2','3','4','5','6','7','8','9')
-//  Random.setSeed(42)
   val theAnswer:String = Random.shuffle(digits).slice(0, requiredDigits).mkString("")
   println(s"The answer is $theAnswer") //TODO delete this line later
 
@@ -54,11 +51,12 @@ class BullsAndCows(
       println(s"It is $currentPlayer's turn.")
     }
     else {
-      println(s"The game has ended. $currentPlayer has won. ")
+      println(s"The game has ended. $getWinner has won. ")
       println(s"Better luck next time $getLoser.")
     }
   }
 
+  //compares the player's guess to the answer and returns the currentStatus in the form of xBxC
   def takeAGuess(playerGuess:String): String = {
     var bulls = 0
     var cows = 0
