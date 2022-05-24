@@ -1,20 +1,14 @@
-//import java.io.FileNotFoundException
-//import java.nio.file.{Files, Paths}
-//import java.text.SimpleDateFormat
-//import java.time.format.DateTimeFormatter
-//import java.time.{ZoneOffset, ZonedDateTime}
-//import java.util.Calendar
-//import scala.collection.mutable.ArrayBuffer
+package old_version
+
 import scala.io.StdIn.readLine
-//import java.sql.DriverManager
 
 object BullsAndCowsTheGame extends App {
 
   //val saveDst = "src/resources/bulls_and_cows/scores.csv"
   val db = new BullsAndCowsDB("src/resources/BullsAndCows/BullsAndCows.db")
   val gameEndCondition = "4B0C"
-//  val minGuess = 123 //all digits must be different
-//  val maxGuess = 9876
+  //  val minGuess = 123 //all digits must be different
+  //  val maxGuess = 9876
   val playerA = readLine("Player A, what is your name? ")
   var playerB = readLine("Player B, what is your name? (press ENTER for computer) ")
   println(s"Player A -  $playerA and Player B - $playerB let us play Bulls and Cows!")
@@ -22,7 +16,7 @@ object BullsAndCowsTheGame extends App {
   val isPlayerAStarting = true
   val BullsAndCowsGame = new BullsAndCows(playerA, playerB, gameEndCondition, isPlayerAStarting)
 
-  def getGuess:String = {
+  def getGuess: String = {
     var needs4DigitNumber = true //we use this as a flag for our code
     var myGuess = "0123"
     //we keep going until we get an input which is 4 unique digits

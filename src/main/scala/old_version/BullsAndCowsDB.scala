@@ -1,4 +1,6 @@
-import java.sql.{Connection, DriverManager, PreparedStatement, ResultSet}
+package old_version
+
+import java.sql.{Connection, DriverManager, PreparedStatement}
 
 class BullsAndCowsDB(val dbPath:String) {
 
